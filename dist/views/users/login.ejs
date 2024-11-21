@@ -1,0 +1,99 @@
+<% include('../layouts/header.ejs') %>
+
+<!-- Add Bootstrap CSS link -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Add custom CSS styles -->
+<style>
+    body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            padding: 20px;
+            /* background-color: #f8f9fa; */
+            /* background-color: #1d4872; */
+            background-image: url('/images/bgimg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* height: 100vh; */
+            /* display: flex; */
+            align-items: center;
+            justify-content: center;
+        }
+
+    .container {
+        margin-top: 10px;
+    }
+
+    form {
+        max-width: 400px;
+        margin: auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+            margin-top: 6%;
+            text-align: center;
+            color: #10345a;
+        }
+
+    h4 {
+        color: #dc3545;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        background-color: #10345a;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #081f38;
+    }
+
+    a {
+        color: #007bff;
+    }
+</style>
+
+<h1>Login</h1>
+
+<%
+    if(typeof message !== 'undefined'){
+        %>
+        <h4><%= message %></h4>
+        <%
+    }
+%>
+
+<div class="container">
+    <form action="/login" method="post">
+        <input type="email" name="email" placeholder="Enter Email" required>
+        <br><br>
+        <input type="password" name="password" placeholder="Enter password" required>
+        <br><br>
+        <input type="submit" style="margin-bottom: 10%;" value="Login">
+        <a href="/register" style="margin-top: 20%; margin-left: 30%; color: #10345a;"> New Registration</a>
+        <a href="/admin/login" style="margin-top: 20%; margin-left: 34%; color: #10345a;"> Admin login </a>
+
+    </form>
+</div>
+
+<% include('../layouts/footer.ejs') %>

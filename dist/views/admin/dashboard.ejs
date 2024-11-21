@@ -1,0 +1,121 @@
+<% include("../layouts/header.ejs") %>
+
+<head>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        /* Add  CSS */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            padding: 20px;
+            /* background-color: #f8f9fa; */
+            /* background-color: #1d4872; */
+            background-image: url('/images/bgimg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* height: 100vh; */
+            /* display: flex; */
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            color: #10345a;
+        }
+
+        a {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: auto;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        td:nth-child(5) p {
+            color: #dc3545;
+        }
+
+        td:last-child a {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Dashboard</h1>
+
+    <a href="/admin/new-user" class="btn" style="background-color: #10345a; color: #fff;">Add New User</a>
+
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Image</th>
+            <th>Verified</th>
+            <th>Action</th>
+        </tr>
+
+        <% if(users.length > 0) { %>
+            <% for(let i = 0; i < users.length; i++) { %>
+                <tr>
+                    <td><%= users[i].name %></td>
+                    <td><%= users[i].email %></td> 
+                    <td><%= users[i].mobile %></td> 
+                    <td><img src="/userImages/<%= users[i].image %>" alt="<%= users[i].image %>" width="100px" height="100px"></td> 
+                    <td>
+                        <% if(users[i].is_verified == 0) { %>
+                            <p style="color: red;">Not Verified</p>
+                        <% } else { %>
+                            <p style="color: green;">Verified</p>
+                        <% } %>
+                    </td>                    
+                    <td>
+                        <a href="/admin/edit-user?id=<%= users[i]._id %>" class="btn" style="background-color: #10345a; color: #fff;">Edit</a>
+                        <a href="/admin/delete-user?id=<%= users[i]._id %>" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            <% } %>
+        <% } else { %>
+            <tr>
+                <td colspan="6">Users Not Found</td>
+            </tr>
+        <% } %>
+    </table>
+    <a href="/admin/" class="btn" style="background-color: #10345a; color: #fff;">Go to Home</a>
+    <a href="/admin/logout" class="btn" style="background-color: #10345a; color: #fff;">Logout</a>
+
+<% include("../layouts/footer.ejs") %>

@@ -1,0 +1,99 @@
+<% include('../layouts/header.ejs') %>
+
+<!-- Add Bootstrap CSS link -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Add CSS styles -->
+<style>
+    body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            padding: 20px;
+            /* background-color: #f8f9fa; */
+            /* background-color: #1d4872; */
+            background-image: url('/images/bgimg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* height: 100vh; */
+            /* display: flex; */
+            align-items: center;
+            justify-content: center;
+        }
+
+    .container {
+        margin-top: 10px;
+    }
+
+    form {
+        max-width: 400px;
+        margin: auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #10345a;
+    }
+
+    p.success-message {
+        color: rgb(231, 243, 231);
+        text-align: center;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="file"] {
+        width: 100%;
+        padding: 3px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<h1>User Registration Form</h1>
+
+<div class="container">
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Enter Name" required>
+        <br><br>
+        <input type="email" name="email" placeholder="Enter Email" required>
+        <br><br>
+        <input type="text" name="mno" placeholder="Enter Mobile" required>
+        <br><br>
+        <input type="file" name="image" required>
+        <br><br>
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <br><br>
+        <input type="submit" style="margin-bottom: 5%; background-color: #10345a; color: #fff;" value="Register">
+        <a href="/login" style="margin-left: 33%; color: #10345a;">Go Back to Login</a>
+
+    </form>
+
+    <% if(typeof message !== 'undefined'){ %>
+        <p class="success-message"><%= message %></p>
+    <% } %>
+</div>
+
+
+<% include('../layouts/footer.ejs') %>
